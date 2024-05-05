@@ -3,9 +3,18 @@ import './App.css';
 import {ITask} from "./interface";
 import ToDoTask from './Components/ToDoTask';
 // import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Login from './Login/login';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const App: FC = () =>{
+
+  <Router>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+    </Routes>
+  </Router>
 
   const [task, setTask] = useState<string>("");
   const [deadline, setDeadline] = useState<number>(0);
@@ -33,8 +42,15 @@ const App: FC = () =>{
     }))
   }
 
+  // const HandleLogin = ():void => {
+  //   const navigate = useNavigate();
+  //   navigate("/login");
+  // };
+
   return (
     <div className="App">
+      {/* <button onClick={HandleLogin}>Login</button> */}
+      <Link to="/login">Login</Link>
       <div className="items">
         <input type="text" placeholder="Task Name" name="task" className="taskInput" onChange={handleChange} value={task}></input>
         <input type="number" placeholder="Time" name="deadline" className="deadlineInput" onChange={handleChange} value={deadline}></input>
