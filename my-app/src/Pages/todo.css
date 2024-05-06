@@ -55,7 +55,7 @@ body {
   animation-delay: 0.5s;
 }
 
-.items button {
+.items .setButton {
   width: 100px;
   height: 30px;
   border-radius: 50px;
@@ -67,7 +67,26 @@ body {
   border: 2px solid white;
 }
 
-.items button:hover {
+.items .setButton:hover {
+  background-color: white;
+  color: black;
+}
+
+.buttonLogin {
+  margin: 20px 0 0 0;
+  background-color: #202020;
+  border: 1px solid white;
+  width: 80px;
+  height: 20px;
+  font-size: 10px;
+  border-radius: 5px;
+  color: white;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.7s;
+}
+
+.buttonLogin:hover {
   background-color: white;
   color: black;
 }

@@ -1,0 +1,84 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    border: none;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.header {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signupElements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #202020 ;
+    height: 450px;
+    width: 430px;
+    border: 1px solid white;  
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.signupElements input {
+    width: 250px;
+    height: 40px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 30px;
+    border: 2px solid white;
+    color: white;
+    background-color: #202020;
+}
+
+.signupButton {
+    width: 100px;
+    height: 30px;
+    border-radius: 50px;
+    opacity: 0;
+    background-color: #202020;
+    color: white;
+    border: 2px solid white;
+    animation: slideUp 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.signupButton:hover {
+    background-color: white;
+    color: black;
+}
+
+.inputEmail {
+    animation: slideUp 1s ease forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+.backButton {
+    background-color: #202020;
+    border: 1px solid white;
+    color: white;
+    width: 80px;
+    height: 30px;
+    margin: 0 0 20px 0;
+    border-radius: 2px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.backButton:hover {
+    background-color: white;
+    color: black;
+}
