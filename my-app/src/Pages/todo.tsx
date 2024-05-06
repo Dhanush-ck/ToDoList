@@ -1,4 +1,4 @@
-import React,  { FC, ChangeEvent, useState } from 'react';
+import React,  { FC, ChangeEvent, useState, useEffect } from 'react';
 import './todo.css';
 import {ITask} from "../interface";
 import ToDoTask from '../Components/ToDoTask';
@@ -6,6 +6,14 @@ import ToDoTask from '../Components/ToDoTask';
 import { Link } from 'react-router-dom';
 
 const ToDo: React.FC = () =>{
+
+  // useEffect(()=>{
+  //   const user = localStorage.getItem("loggedUser");
+  //   const tasktodo = localStorage.getItem(user+"task");
+  //   // taskt = useState<ITask[]>([]);
+  //   // [JSON.parse(tasktodo).taskList, tasktodo.setTasklist]
+  // })
+
 
   const [task, setTask] = useState<string>("");
   const [deadline, setDeadline] = useState<number>(0);
@@ -32,11 +40,6 @@ const ToDo: React.FC = () =>{
       return task.taskName !== taskNameToDelete
     }))
   }
-
-  // const HandleLogin = ():void => {
-  //   const navigate = useNavigate();
-  //   navigate("/login");
-  // };
 
   return (
     <div className="App">
