@@ -65,6 +65,12 @@ body {
     opacity: 0;
 }
 
+.inputName {
+    animation: slideUp 1s ease forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
 .backButton {
     background-color: #202020;
     border: 1px solid white;

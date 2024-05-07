@@ -16,14 +16,17 @@ import ToDo from "./todo";
             alert('User Not Found');
         }
         else if (JSON.parse(user).password === password) {
-            localStorage.setItem("loggedUser", JSON.stringify(user));
+            localStorage.setItem("loggedUser", JSON.stringify({user: user}));
+            localStorage.setItem("loggedUserName", JSON.stringify(JSON.parse(user).name));
             // setUser(user);
+            alert('Login Succesfull');
             navigate('/');
         }
         else {
             alert('Wrong Password');
         }
     }
+
 
     return(
         <div className="header">

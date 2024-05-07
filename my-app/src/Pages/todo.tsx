@@ -2,22 +2,18 @@ import React,  { FC, ChangeEvent, useState, useEffect } from 'react';
 import './todo.css';
 import {ITask} from "../interface";
 import ToDoTask from '../Components/ToDoTask';
-// import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
+import { useNavigate } from 'react-router-dom';
 
 const ToDo: React.FC = () =>{
 
+  const navigate = useNavigate();
   const [task, setTask] = useState<string>("");
   const [deadline, setDeadline] = useState<number>(0);
   const [todoList, setTodoList] = useState<ITask[]>([]);
-  
-  // const [user, setUser] = useState(() => {
-  //     const username = localStorage.getItem("loggedUser");
-  //     return username ? JSON.parse(username) :"";
-  // });
 
-  const user = useState(localStorage.getItem("loggedUser"));
+  const [user, setUser] = useState(localStorage.getItem("loggedUser"));
+  // const userName = useState(localStorage.getItem("loggedUserName"));
+  const [isLogged, setLog] = useState(user===null);
 
   const getStoredList = () => {
     const List = localStorage.getItem(user+'task');
@@ -25,8 +21,9 @@ const ToDo: React.FC = () =>{
   };
 
   useEffect(()=> {
-    // setTodoList(getStoredList());
-  })
+    setTodoList(getStoredList());
+    setLog((user == null));
+  },[])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void  => {
     if (event.target.name === "task") {
@@ -40,9 +37,12 @@ const ToDo: React.FC = () =>{
   const addTask = (): void => {
     const newTask = { taskName: task, deadline: deadline };
     setTodoList([...todoList, newTask]);
-    localStorage.setItem(user+'task', JSON.stringify(todoList));
     setTask("");
     setDeadline(0);
+  }
+  
+  const save = (): void => {
+    localStorage.setItem(user+'task', JSON.stringify(todoList));
   }
 
   const completeTask = (taskNameToDelete: string): void => {
@@ -51,14 +51,26 @@ const ToDo: React.FC = () =>{
     }))
   }
 
+  const navigateto = () => {
+    if(isLogged) {
+      setLog(user == null);
+      navigate('/login');
+    }
+    else {
+      setLog(!isLogged);
+      localStorage.removeItem("loggedUser");
+      setTodoList([]);
+    }
+  }
+
   return (
     <div className="App">
-      {/* <button onClick={HandleLogin}>Login</button> */}
       <div className="items">
+      {/* <span>{ String(userName)}</span> */}
         <input type="text" placeholder="Task Name" name="task" className="taskInput" onChange={handleChange} value={task}/>
         <input type="number" placeholder="Time" name="deadline" className="deadlineInput" onChange={handleChange} value={deadline}/>
         <button className="setButton" onClick={addTask}> Set Task</button>
-        <Link to="/login" className='linkLogin'><button className='buttonLogin'>Login</button></Link>
+        <button className='buttonLogin' onClick={navigateto}>{isLogged ? 'Login': 'Logout'} </button>
       </div>
 
       <div className="todo">
@@ -66,6 +78,7 @@ const ToDo: React.FC = () =>{
         {todoList.map((task : ITask, key: number)=> {
           return <ToDoTask key={key} task={task} completeTask={completeTask}/>;
         })}
+        <button onClick={save} className='save'>Save</button>
       </div> 
     </div>
   );
