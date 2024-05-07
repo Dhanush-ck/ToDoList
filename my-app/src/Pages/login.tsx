@@ -2,13 +2,13 @@ import React, {FC} from "react";
 import './login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { ITask } from "../interface";
+// import { ITask } from "../interface";
+import ToDo from "./todo";
 
  const Login: FC = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const [taskList, setTasklist] = useState<ITask[]>([]);
     const navigate = useNavigate();
     const handleLogin = () => {
         const user = localStorage.getItem(username);
@@ -16,8 +16,8 @@ import { ITask } from "../interface";
             alert('User Not Found');
         }
         else if (JSON.parse(user).password === password) {
-            localStorage.setItem("loggedUser", JSON.stringify({user}));
-            // localStorage.setItem(user+"task", JSON.stringify([taskList, setTasklist]));
+            localStorage.setItem("loggedUser", JSON.stringify(user));
+            // setUser(user);
             navigate('/');
         }
         else {
